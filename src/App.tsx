@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Clock from './components/Clock';
+import Clock  from "./components/Clock";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
-        <h1>Pomodoro Clock</h1>
-        <Clock/>
+      <h1>Pomodoro Clock</h1>
+      <Clock />
     </div>
   );
 }
