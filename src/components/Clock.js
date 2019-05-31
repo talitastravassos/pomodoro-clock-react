@@ -18,28 +18,33 @@ const Clock = (props) => {
          return min + ':' + sec;
       }
 
-
+    const controls = () => {
+        // console.log(isRunning)
+        setIsRunning(!isRunning)
+        if (isRunning) {
+            countdown()
+        }
+    }  
 
     const countdown = () => {
+        //setIsRunning(!isRunning)
 
         let counter = sessionLength * 60;
 
         let interval = setInterval(() => {
-
-                counter--;
-                setIsRunning(true)
-                let minutes = Math.floor(counter/60)
-                let seconds = counter % 60
-                setMinutes(minutes)
-                setSeconds(seconds)
+            counter--;
+            let minutes = Math.floor(counter/60)
+            let seconds = counter % 60
+            setMinutes(minutes)
+            setSeconds(seconds)
+            
+            if(counter < 0){
                 
-                if(counter < 0 ){
-                    
-                    clearInterval(interval);
-                    console.log('Ding!');
-                };
+                clearInterval(interval);
+                console.log('Ding!');
+            };
         
-            }, 1000);
+        }, 1000);
             //console.log(counter);
             
         
@@ -47,11 +52,12 @@ const Clock = (props) => {
     }
 
     // useEffect(() => {
-    //     formatTime(sessionLength)
+    //     //formatTime(sessionLength)
 
-    //     //countdown(sessionLength);
+    //     countdown();
+    //     //setIsRunning(!isRunning)
         
-    // }, [])
+    // }, [isRunning])
 
 
     return (
@@ -81,7 +87,7 @@ const Clock = (props) => {
                 <p className='title'>Session</p>
                 <p className='timer'>{formatTime()}</p>
                 <div className="timer-control">
-                    <button id="start_stop" onClick={countdown}>
+                    <button id="start_stop" onClick={controls}>
                         <FaPlayCircle/>
                         <FaRegPauseCircle/>
                     </button>
